@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
           title: const Text('Welcome to Flutter'),
         ),
         body: const Center(
-          // child: Text(wordPair.asPascalCase),
           child: RandomWords(),
         ),
       ),
@@ -59,9 +58,19 @@ class _RandomWordsState extends State<RandomWords> {
           ),
           trailing: Icon(
             alreadySaved ? Icons.favorite : Icons.favorite_border,
-            color: alreadySaved ? Colors.red : null,
+            color: alreadySaved ? Colors.red : Colors.grey,
             semanticLabel: alreadySaved ? 'Remove from saved' : 'saved',
           ),
+          onTap: (){
+            setState(() {
+              if(alreadySaved){
+                _saved.remove(_suggestion[index]);
+              }
+              else{
+                _saved.add(_suggestion[index]);
+              }
+            });
+          },
         );
       },
     );
